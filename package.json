@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.1.2",
     "commander": "^9.4.1"
   },
   "bin": {
     "restapari": "./index.js"
-  }
+  },
+  "type": "module"
 }
