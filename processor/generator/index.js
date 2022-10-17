@@ -6,7 +6,6 @@ const buildScope = (scopeObject) => {
     const {name, scope, resources} = scopeObject;
     stack.push(name)
 
-
     if(scope && Object.hasOwn(scope, "name")){
         buildScope(scope);
     }
@@ -16,10 +15,10 @@ const buildScope = (scopeObject) => {
     }
 
     stack.pop()
-
 }
 
 const buildResources = (resources) => {
+    const {resources: childResources} = resources
     const path = stack.join("/")
     console.log(`GET\t ${path}/${resources}`)
     console.log(`GET\t ${path}/${resources}/new`)
