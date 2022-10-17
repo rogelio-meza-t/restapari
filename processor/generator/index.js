@@ -21,7 +21,13 @@ const buildScope = (scopeObject) => {
 
 const buildResources = (resources) => {
     const path = stack.join("/")
-    console.log(`${path}/${resources}`)
+    console.log(`GET\t ${path}/${resources}`)
+    console.log(`GET\t ${path}/${resources}/new`)
+    console.log(`POST\t ${path}/${resources}`)
+    console.log(`GET\t ${path}/${resources}/:id`)
+    console.log(`PUT\t ${path}/${resources}/:id`)
+    console.log(`PATCH\t ${path}/${resources}/:id`)
+    console.log(`DELETE\t ${path}/${resources}/:id`)
 }
 
 export default (file) => {
