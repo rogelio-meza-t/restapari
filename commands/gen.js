@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import chalk from "chalk";
 
-import generator from "../processor/generator/index.js";
+import generator from "../processor/generator/generator.js";
 
 export default (fileDescriptor) => {
     const path =`./${fileDescriptor}.yml`
