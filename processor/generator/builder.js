@@ -46,14 +46,22 @@ const resourcesBuilder = (definition) => {
 
 const resourcesPrinter = (name) => {
     const path = namespaceStack.join("/")
-    const parentResources = resourcesStack.filter(s => s!==name).join("/")
-    console.log(`GET\t ${path}/${parentResources}/${name}`)
-    console.log(`GET\t ${path}/${parentResources}/${name}/new`)
-    console.log(`POST\t ${path}/${parentResources}/${name}`)
-    console.log(`GET\t ${path}/${parentResources}/${name}/:id`)
-    console.log(`PUT\t ${path}/${parentResources}/${name}/:id`)
-    console.log(`PATCH\t ${path}/${parentResources}/${name}/:id`)
-    console.log(`DELETE\t ${path}/${parentResources}/${name}/:id`)
+    const parentResources = parentResourceBuilder()
+
+    console.log(`GET\t /${path}${parentResources}${name}`)
+    console.log(`GET\t /${path}${parentResources}${name}/new`)
+    console.log(`POST\t /${path}${parentResources}${name}`)
+    console.log(`GET\t /${path}${parentResources}${name}/:id`)
+    console.log(`PUT\t /${path}${parentResources}${name}/:id`)
+    console.log(`PATCH\t /${path}${parentResources}${name}/:id`)
+    console.log(`DELETE\t /${path}${parentResources}${name}/:id`)
+}
+
+const parentResourceBuilder = () => {
+    const n = resourcesStack.length - 1
+    const resources = resourcesStack.slice(0,-1)
+
+    return resources.map(r => `/${r}/:${r}_id/`).join("/")
 }
 
 export default definitionsIterator
