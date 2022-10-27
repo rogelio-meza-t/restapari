@@ -1,4 +1,4 @@
-# RESTapari
+# restapari
 
 _A lightweight tool to generate RESTful URLs from resources_.
 
@@ -29,8 +29,26 @@ npm i -g
 To generate a list of URL based on definitions file do:
 
 ```
-restapari [options] [command]
+restapari gen [options] 
 ```
+
+restapari must be executed from the same path the description file is located. restapari use `descriptor.yml` as the default name for the descriptor file. However, the file name can be set using the flags `-f` or `--file-descriptor`.
+
+Examples:
+
+ - basic usage using default descriptor name: 
+
+```
+restapari gen
+```
+
+ - change the descriptor file name:
+
+```
+restapari gen --file-descriptor=definitions
+```
+
+Note: The `.yml` extension is not necessary
 
 
 ###  Options 
