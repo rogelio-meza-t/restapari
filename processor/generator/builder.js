@@ -15,7 +15,7 @@ const definitionFactory = {
     namespace: (definition) => {
         namespaceBuilder(definition)
     },
-    resources: (definition) => {
+    resource: (definition) => {
         resourcesBuilder(definition)
     }
 }
@@ -49,7 +49,6 @@ const resourcesPrinter = (name) => {
     const parentResources = parentResourceBuilder()
 
     console.log(`GET\t /${path}${parentResources}${name}`)
-    console.log(`GET\t /${path}${parentResources}${name}/new`)
     console.log(`POST\t /${path}${parentResources}${name}`)
     console.log(`GET\t /${path}${parentResources}${name}/:id`)
     console.log(`PUT\t /${path}${parentResources}${name}/:id`)
@@ -58,10 +57,9 @@ const resourcesPrinter = (name) => {
 }
 
 const parentResourceBuilder = () => {
-    const n = resourcesStack.length - 1
     const resources = resourcesStack.slice(0,-1)
-
-    return resources.map(r => `/${r}/:${r}_id/`).join("/")
+    const path = resources.map(r => `${r}/:${r}_id/`).join("/")
+    return `/${path}`
 }
 
 export default definitionsIterator
