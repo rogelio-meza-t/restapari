@@ -3,9 +3,16 @@
 _A lightweight tool to generate RESTful URLs from resources_.
 
 
+## Index
+1. [Installation](#installation)
+2. [Usage](#usage)
+	1. [Options](#options)
+	2. [Commands](#commands)
+3. [Descriptor file](#descriptor-file)
+	1. [Samples](#samples)
 
-## Installation
 
+## Installation<a name="installation"></a>
 Clone the repository:
 
 ```
@@ -24,15 +31,24 @@ Install the package globally on your machine:
 npm i -g
 ```
 
-##  Usage
-
+##  Usage<a name="usage"></a>
 To generate a list of URL based on definitions file do:
+
+Note: restapari must be executed from the same path the description file is located.
 
 ```
 restapari gen [options] 
 ```
 
-restapari must be executed from the same path the description file is located. restapari use `descriptor.yml` as the default name for the descriptor file. However, the file name can be set using the flags `-f` or `--file-descriptor`.
+###  Options<a name="options"></a> 
+
+
+```
+-f, --file-descriptor      set the name of file descriptor
+```
+
+restapari use `descriptor.yml` as the default name for the descriptor file. However, the file name can be set using the flags `-f` or `--file-descriptor`.
+
 
 Examples:
 
@@ -51,26 +67,20 @@ restapari gen --file-descriptor=definitions
 Note: The `.yml` extension is not necessary
 
 
-###  Options 
 
-
-```
--h, --help      display help for command
-```
-
-###  Commands
+###  Commands <a name="commands"></a>
 
 ```
 gen [options]   generates RESTful URL based on the YAML file descriptor
 help [command]  display help for command
 ```
 
-##  Descriptor file
+##  Descriptor file <a name="descriptor-file"></a>
 
-Descriptor is a valid YAML file with the API definition, then RESTapari prints the URLs based on that file.The descriptor file is compose by an array of one or more definitions. There are two main definitions: namespaces and resources. 
+Descriptor is a valid YAML file with the API definition, then restapari prints the URLs based on that file.The descriptor file is compose by an array of one or more definitions. There are two main definitions: namespaces and resources. 
 
 Every definition has two required keys:
-- **type** indicates if it is a namespace or a resource. The available values are `namespace` and `resources`
+- **type** indicates if it is a namespace or a resource. The available values are `namespace` and `resource`
 - **name** the name of the definition.
 
 Also, there is a required key for resources only:
@@ -82,21 +92,21 @@ Also, there is a required key for resources only:
   * **update**: the action for update a resource
   * **destroy**: to delete a specific resource
 
-RESTapari allows nested definitions on namespaces and resources using the key `nested`. `nested` is an array of definitions and it can have as many as necessary nested definitions. 
+restapari allows nested definitions on namespaces and resources using the key `nested`. `nested` is an array of definitions and it can have as many as necessary nested definitions. 
 
-**Note**: It's highly recommendable to finish a namespace with a nested `resources`, due to it will represent endpoint actions.  
+**Note**: It's highly recommendable to finish a namespace with a nested `resource`, due to it will represent endpoint actions.  
 
-### Samples
+### Samples <a name="samples"></a>
 
 ```
 - type: namespace
   name: api
   nested:
-  - type: resources
+  - type: resource
     name: users
     scope:
       - CRUD
-- type: resources
+- type: resource
   name: messages
   scope:
     - index
@@ -123,12 +133,12 @@ one more advanced example
 - type: namespace
   name: api
   nested:
-    - type: resources
+    - type: resource
       name: users
       scope:
         - CRUD
       nested:
-        - type: resources
+        - type: resource
           name: messages
           scope:
             - index

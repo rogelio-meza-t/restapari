@@ -1,5 +1,5 @@
 export default {
-    RESOURCES: "resources",
+    RESOURCE: "resource",
     NAMESPACE: "namespace",
     CRUD: "CRUD",
     SCOPE: "scope"
